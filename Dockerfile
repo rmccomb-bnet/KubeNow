@@ -1,26 +1,26 @@
 FROM ubuntu:xenial-20171006
 
-# Provisioners versions
-ENV TERRAFORM_VERSION=0.10.7
-ENV ANSIBLE_VERSION=2.3.1.0
-ENV LIBCLOUD_VERSION=1.5.0
-ENV J2CLI_VERSION=0.3.1.post0
-ENV DNSPYTHON_VERSION=1.15.0
-ENV JMESPATH_VERSION=0.9.3
-ENV SHADE_VERSION=1.21.0
-ENV OPENSTACKCLIENT_VERSION=3.11.0
-ENV GLANCECLIENT_VERSION=2.8.0
-ENV AWSCLI_VERSION=1.11.177
-ENV AZURE_CLI_VERSION=2.0.18
-ENV GOOGLE_CLOUD_SDK_VERSION=179.0.0-0
-# Terraform plugin versions
-ENV PLUGIN_OPENSTACK=0.2.2
-ENV PLUGIN_GOOGLE=0.1.3
-ENV PLUGIN_AWS=1.0.0
-ENV PLUGIN_AZURERM=0.2.2
-ENV PLUGIN_NULL=1.0.0
-ENV PLUGIN_CLOUDFLARE=0.1.0
-ENV PLUGIN_TEMPLATE=1.0.0
+# Set provisioners and plugin versions
+ENV TERRAFORM_VERSION=0.10.7 \
+    ANSIBLE_VERSION=2.3.1.0 \
+    LIBCLOUD_VERSION=1.5.0 \
+    J2CLI_VERSION=0.3.1.post0 \
+    DNSPYTHON_VERSION=1.15.0 \
+    JMESPATH_VERSION=0.9.3 \
+    SHADE_VERSION=1.21.0 \
+    OPENSTACKCLIENT_VERSION=3.11.0 \
+    GLANCECLIENT_VERSION=2.8.0 \
+    AWSCLI_VERSION=1.11.177 \
+    AZURE_CLI_VERSION=2.0.18 \
+    GOOGLE_CLOUD_SDK_VERSION=179.0.0-0 \
+    `# Terraform plugin versions` \
+    PLUGIN_OPENSTACK=0.2.2 \
+    PLUGIN_GOOGLE=0.1.3 \
+    PLUGIN_AWS=1.0.0 \
+    PLUGIN_AZURERM=0.2.2 \
+    PLUGIN_NULL=1.0.0 \
+    PLUGIN_CLOUDFLARE=0.1.0 \
+    PLUGIN_TEMPLATE=1.0.0
 
 # Install with apt and pip
 RUN apt-get update -y && apt-get install -y \
@@ -35,7 +35,7 @@ RUN apt-get update -y && apt-get install -y \
       python-pip \
       unzip && \
     `# Add google cloud` \
-    echo "deb http://packages.cloud.google.com/apt cloud-sdk-xenial main" \
+    echo "deb https://packages.cloud.google.com/apt cloud-sdk-xenial main" \
       | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg \
       | apt-key add - && \
