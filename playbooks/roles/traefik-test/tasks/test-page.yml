@@ -1,7 +1,7 @@
 ---
 - name: "test endpoint"
   uri:
-    url: "http://{{jupyter_hostname}}{{proxied_suffix}}.{{domain}}"
+    url: "http://{{cheese}}.{{cheese_domain_name}}"
   register: result
   until:
     result['status'] | default(0) == 200
