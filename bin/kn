@@ -65,7 +65,7 @@ function docker_run() {
   kubenow_root=$2
   # shellcheck disable=SC2068
   docker run --rm -it \
-    -v "$kubenow_root":/KubeNow_root \
+    -v "$kubenow_root":/KubeNow_root:Z \
     -e "LOCAL_USER_ID=$UID" \
     -e "LOCAL_GROUP_IDS=$(id -G)" \
     -e "TERRAFORM_OPT=$TERRAFORM_OPT" \
@@ -75,7 +75,7 @@ function docker_run() {
     --env-file <(env | grep GOOGLE_) \
     --env-file <(env | grep AWS_) \
     --env-file <(env | grep ARM_) \
-    --env-file <(env | grep KUBENOW_) \
+    --env-file <(env | grep KN_) \
     "$container" \
     "/opt/KubeNow/bin/docker-entrypoint" ${@:3}
 }
