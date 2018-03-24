@@ -16,6 +16,9 @@
   set_fact:
     cheese_domain_name: "{{domain}}"
 
+- debug:
+    msg: "cheese_domain_name: {{cheese_domain_name}}"
+
 - name: deploy cheese helm package
   command: >
     helm install --name cheese
